@@ -1,5 +1,5 @@
 # A11y-Target-Size
-To find [WCAG 2.5.5 Target Size (AA)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) bugs automatically I have created this [A11y Target Size(AA)](https://cdpn.io/pen/debug/abXggVw?authentication_hash=DqADdepmNLGA) bookmarklet. It will minimize the manual effort of all Accessibility testers out there🙂. 
+To detect [WCAG 2.5.5 Target Size (AA)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) bugs automatically I have created this [A11y Target Size(AA)](https://cdpn.io/pen/debug/abXggVw?authentication_hash=DqADdepmNLGA) bookmarklet. It will minimize the manual effort of all Accessibility testers out there🙂. 
 
 I have used ChatGPT to generate used code and then did some manual debugging to edit the code based on my requirements and also tested it on few websites.
 
