@@ -1,0 +1,15 @@
+javascript:(function() {
+  var clickableElements = document.querySelectorAll('a, label, button, input:not([type=hidden]), select, textarea, [tabindex], [role=button], [role=checkbox], [role=link], [role=menuitem], [role=option], [role=radio], [role=switch], [role=tab]');
+  
+  clickableElements.forEach(function(element) {
+    var rect = element.getBoundingClientRect();
+    var width = rect.width;
+    var height = rect.height;
+
+    if (width >= 24 && height >= 24) {
+      element.style.border = '2px solid green';
+    } else {
+      element.style.border = '2px solid red';
+    }
+  });
+})();
