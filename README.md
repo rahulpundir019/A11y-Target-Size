@@ -9,5 +9,5 @@ I have used ChatGPT to generate used code and then did some manual debugging to 
 
 ### Credits:
 1. I have used [Target Size](https://github.com/stevefaulkner/targetsize) created by [Steve Faulkner](https://github.com/stevefaulkner) which is good to test Target size so check it out but because it does not work on some places(like dialogs) and as a tester I found its testing UX not efficient and as I also want to see whole clickable/target area so that I can also identify overlapping cases clearly while going through websites so created mine accordingly.
-2. Open AI ChatGPT 3.5😂
+2. Open AI ChatGPT😂
 
