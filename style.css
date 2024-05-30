@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+h2 {
+  color: #333;
+}
+
+p {
+  color: #333;
+}
+
+a {
+  color: #006ee5;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration-style: double; 
+}
+
+ol {
+  margin-bottom: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Style for the bookmarklet link */
+a[href^="javascript:"] {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #000000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+a[href^="javascript:"]:hover {
+  background-color: #006ee5;
+}
+
+/* Additional styling for the GitHub link */
+a[href*="github.com"] {
+  color: #333;
+  font-weight: bold;
+}
+
+a[href*="github.com"]:hover {
+  text-decoration: underline;
+}
