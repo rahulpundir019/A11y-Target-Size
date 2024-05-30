@@ -119,14 +119,15 @@
 <li>If the element has a height or width 24 pixels or greater, it will highlight clickable control area with Green color.</li>
 
 <li>This tool also check Spacing exception:Undersized targets (those less than 24 by 24 CSS pixels) are positioned so that if a 24 CSS pixel diameter circle is centered on the bounding box of each, the circles do not intersect another target or the circle for another undersized target)</li></ol>
-
+<p>Credit: I have modified original code as per my need so you can also check orginal Creator(Steve Faulkner) <a href="https://cdpn.io/pen/debug/YzdwWZw">bookmarklet</a>
+  
 <h2>24px Cursor Bookmarklet</h2>
   <h3>How to use</h3>
 <p><u>Note: Above two Bookmarklet(Version1 and Version 2) might through false positive errors so you can manually check those case using below 24px cursor to ensure you logging correct bug.</u></p>
 <ol><li><b>Drag <a href="javascript:(function(){var d=document,id='AAR24pxBkmklt1',el=d.getElementById(id),f=d.querySelectorAll('iframe'),i=0,l=f.length;if(el){function removeFromShadows(root){for(var el of root.querySelectorAll('*')){if(el.shadowRoot){el.shadowRoot.getElementById(id).remove();removeFromShadows(el.shadowRoot);}}}el.remove();if(l){for(i=0;i<l;i++){try{f[i].contentWindow.document.getElementById(id).remove();removeFromShadows(f[i].contentWindow.document);}catch(e){console.log(e)}}}removeFromShadows(d);}else{s=d.createElement('style');s.id=id;s.appendChild(d.createTextNode('*{ cursor: url("data:image/svg+xml,%3Csvg viewBox=%270 0 24 24%27 width=%2724%27 height=%2724%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Ccircle cx=%2750%25%27 cy=%2750%25%27 r=%2711.5%27 fill=%27none%27 stroke=%27%23FF0000%27 stroke-width=%271%27/%3E%3Ccircle cx=%2750%25%27 cy=%2750%25%27 r=%2710.5%27 fill=%27none%27 stroke=%27%23FF0000%27 stroke-width=%271%27/%3E%3Cline x1=%2730%25%27 y1=%2750%25%27 x2=%2770%25%27 y2=%2750%25%27 stroke=%27%23FF0000%27 stroke-width=%272%27/%3E%3Cline x1=%2750%25%27 y1=%2730%25%27 x2=%2750%25%27 y2=%2770%25%27 stroke=%27%23FF0000%27 stroke-width=%272%27/%3E%3C/svg%3E") 12 12, auto !important}'));function applyToShadows(root){for(var el of root.querySelectorAll('*')){if(el.shadowRoot){el.shadowRoot.appendChild(s.cloneNode(true));applyToShadows(el.shadowRoot);}}}d.getElementsByTagName('head')[0].appendChild(s);for(i=0;i<l;i++){try{f[i].contentWindow.document.getElementsByTagName('head')[0].appendChild(s.cloneNode(true));applyToShadows(f[i].contentWindow.document);}catch(e){console.log(e)}}applyToShadows(d);}})();">24px SVG Circle Cursor</a>to your bookmark bar</b> to add it on your browser bookmark area then simply click on it everytime you want to run it.</li>
   <li>Move your 24px cursor to the centre of the control you want to check and if your 24px cusor border is overlapping with other control hit area then it will fail otherwise pass</li>
 </ol>
-<p>You can check other similar <a href="https://adrianroselli.com/2022/05/24x24-pixel-cursor-bookmarklet.html">24px Cursor bookmarklets</a> on creator website.</p>
+<p>Credit: I have modified original code as per my need so you can check other similar <a href="https://adrianroselli.com/2022/05/24x24-pixel-cursor-bookmarklet.html">24px Cursor bookmarklets</a> by original creator(Adrian Roselli) website.</p>
   <a href="https://github.com/rahulpundir011/A11y-Target-Size/tree/main">Read more and check out Source code on GitHub</a>  
 </body>
 </html>
