@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A11y Target Size Bookmarklet</title>
+</head>
+<body>
+  <h1>A11y Target Size Bookmarklet(V2)</h1>
+  
+  <p>To detect <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html">Target Size (Minimum) (Level AA)</a> bugs automatically I have created this 'A11y Target Size' bookmarklet. It will minimize the manual effort of all Accessibility testers out there🙂.</p>
+  
+  <h2>How to use</h2>
+<ol><li><b>Drag <a href="javascript:(function() {
+    function getCenter(element) {
+        const rect = element.getBoundingClientRect();
+        return {
+            top: rect.top + window.scrollY + rect.height / 2,
+            left: rect.left + window.scrollX + rect.width / 2
+        };
+    }
+
+    function isVisible(element) {
+        let el = element;
+        while (el) {
+            const style = getComputedStyle(el);
+            if (style.display === 'none' || style.visibility === 'hidden') {
+                return false;
+            }
+            el = el.parentElement;
+        }
+        return true;
+    }
+
+    const namespace = 'http://www.w3.org/2000/svg';
+    const interactiveElements = [...document.querySelectorAll('a, label, button, input:not([type=hidden]), select, textarea, [tabindex], [role=button], [role=checkbox], [role=link], [role=menuitem], [role=option], [role=radio], [role=switch], [role=tab]')]
+        .filter(isVisible);
+
+    const elementsWithCenters = [];
+    interactiveElements.forEach(function(element) {
+        if (!element.matches('label') && element.closest('label')) return;
+
+        const center = getCenter(element);
+        elementsWithCenters.push({ element, center });
+
+        const rect = element.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        if (width >= 24 && height >= 24) {
+            element.style.border = '2px solid green';
+        } else {
+            element.style.border = '2px solid red';
+        }
+
+        const svg = document.createElementNS(namespace, 'svg');
+        svg.style.position = 'absolute';
+        svg.style.top = `${center.top - 12}px`;
+        svg.style.left = `${center.left - 12}px`;
+        svg.style.width = '24px';
+        svg.style.height = '24px';
+        svg.style.zIndex = '9999';
+        svg.style.margin = '0';
+        svg.style.pointerEvents = 'none';
+        svg.setAttribute('aria-hidden', 'true');
+
+        const circle = document.createElementNS(namespace, 'circle');
+        circle.setAttribute('cx', '12');
+        circle.setAttribute('cy', '12');
+        circle.setAttribute('r', '12');
+
+        const clipPath = document.createElementNS(namespace, 'clipPath');
+        clipPath.setAttribute('id', 'clip');
+        clipPath.appendChild(circle.cloneNode());
+        svg.appendChild(clipPath);
+
+        circle.setAttribute('clip-path', 'url(#clip)');
+        if (width < 24 || height < 24) {
+            circle.setAttribute('fill', 'rgba(0, 0, 255, 0.3)');
+        } else {
+            circle.setAttribute('fill', 'rgba(0, 200, 0, 0.3)');
+            circle.setAttribute('stroke', 'rgba(0, 200, 0, 0.8)');
+            circle.setAttribute('stroke-width', '4');
+        }
+        svg.appendChild(circle);
+        document.body.appendChild(svg);
+    });
+
+    const overlappingElements = [];
+    elementsWithCenters.forEach(function(elementWithCenter, index) {
+        elementsWithCenters.slice(index + 1).forEach(function(otherElementWithCenter) {
+            const distance = Math.sqrt(
+                Math.pow(otherElementWithCenter.center.left - elementWithCenter.center.left, 2) +
+                Math.pow(otherElementWithCenter.center.top - elementWithCenter.center.top, 2)
+            );
+            if (distance < 24) {
+                overlappingElements.push(elementWithCenter.element);
+                overlappingElements.push(otherElementWithCenter.element);
+            }
+        });
+    });
+
+    const uniqueOverlappingElements = [...new Set(overlappingElements)];
+    uniqueOverlappingElements.forEach(function(element) {
+        element.setAttribute('aria-description', 'overlap');
+    });
+
+    alert(`There are ${uniqueOverlappingElements.length} overlapping controls.`);
+})();
+">A11y Target Size</a> to your bookmark bar</b> to add it on your browser bookmark area then simply click on it everytime you want to run it.</li>
+  <li>If the element has a height or width less than 24 pixels, it will highlight clickable control area with Red color.</li>
+<li>If the element has a height or width 24 pixels or greater, it will highlight clickable control area with Green color.</li>
+</ol>
+<p><u>Note: This tool also check Spacing exception:Undersized targets (those less than 24 by 24 CSS pixels) are positioned so that if a 24 CSS pixel diameter circle is centered on the bounding box of each, the circles do not intersect another target or the circle for another undersized target)</u></p>
+</ol>
+  <a href="https://github.com/rahulpundir011/A11y-Target-Size/tree/main">Read more and check out Source code on GitHub</a>  
+</body>
+</html>
